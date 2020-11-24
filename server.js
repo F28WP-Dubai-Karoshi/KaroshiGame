@@ -80,49 +80,32 @@ io.sockets.on('connection', function(socket) {
 
 
 });
-    //emit score every 40 milliseconds
-    setInterval(function(){
-        // info about name and scores of everyone to be sent to every player
-        var pack = [];
-        for(var i in SCORES_LIST){
-            var score_player = SCORES_LIST[i];
-            pack.push({
-                name: score_player.name,
-                score: score_player.score
-            })
-        }
-        sortedPack = updateLeaderBoard(pack);
-        console.log(sortedPack);
-        for(var j in SOCKET_LIST){
-            var socket = SOCKET_LIST[j];
-            socket.emit('updateScores', sortedPack);
-        }
-
-    },50);
-
-    function updateLeaderBoard(list) {
-        let newList = [];
-        list.sort(function(a, b){ return b.score - a.score });
-        for(let i = 0; i<list.length; i++){
-            newList[i] = (i+1) + " - " + list[i].name + " : " + list[i].score;
-        }
-        return newList;
-    //     for(let i=0; i<scores.length; i++) {
-    // //        if(i<scores.length){
-    //             let name = document.createElement("div");
-    //             //let score = document.createElement("div");
-    //             name.classList.add("name");
-    //             //score.classList.add("score");
-    //             name.innerText = (i+1) + " - " + scores[i].name + " : " + scores[i].score;
-    //             //score.innerText = scores[i].score;
     
-    //             let scoreRow = document.createElement("div");
-    //             scoreRow.classList.add("row");
-    //             scoreRow.appendChild(name);
-    //             //scoreRow.appendChild(score);
-    //             leaderboard.appendChild(scoreRow);
-    
-    //        }
-            
-        // }
+//emit score every 40 milliseconds
+setInterval(function(){
+    // info about name and scores of everyone to be sent to every player
+    var pack = [];
+    for(var i in SCORES_LIST){
+        var score_player = SCORES_LIST[i];
+        pack.push({
+            name: score_player.name,
+            score: score_player.score
+        })
     }
+        
+    sortedPack = updateLeaderBoard(pack);
+    
+    for(var j in SOCKET_LIST){
+        var socket = SOCKET_LIST[j];
+        socket.emit('updateScores', sortedPack);
+    }
+},50);
+
+function updateLeaderBoard(list) {
+    let newList = [];
+    list.sort(function(a, b){ return b.score - a.score });
+    for(let i = 0; i<list.length; i++){
+        newList[i] = (i+1) + " - " + list[i].name + " : " + list[i].score;
+    }
+    return newList;
+}

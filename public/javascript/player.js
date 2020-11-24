@@ -1,9 +1,9 @@
 var score = document.querySelector(".score");
 var playerScore = 0;
-var userName ="poggers";
+var userName = "anonymous";
 var name = document.getElementsByClassName("name-space");
 
-//const socket = io();
+
 
 var submit = document.getElementById("submit");
     submit.onclick = function(){
@@ -19,12 +19,7 @@ var submit = document.getElementById("submit");
     socket.emit('username-submit', userName);
 }
 
-var Key = {
-    LEFT: 37,
-    UP: 38,
-    RIGHT: 39,
-    DOWN: 40
-  };
+var Key = {LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40};
   
 function listener(evt, element, fn) {
     if (window.addEventListener) 
@@ -34,99 +29,92 @@ function listener(evt, element, fn) {
   }
   
 
-  function move(evt) {
-    if (!evt)
-      evt = window.event;
-    var keycode = evt.keyCode || evt.which; 
+function move(evt) {
+  if (!evt)
+    evt = window.event;
+  var keycode = evt.keyCode || evt.which; 
   
-    var info = document.getElementById("chat-form");
-    var blob = document.getElementById("icon");
-    // var direction = "Up";
-    switch (keycode) {
-        case Key.LEFT:
-          blob.style.left = parseInt(blob.style.left) - 5 + 'px';
-          movePointer(keycode);
-          direction = "Left";
-          checkBoundary(blob,direction);
+  var info = document.getElementById("chat-form");
+  var blob = document.getElementById("icon");
+  // var direction = "Up";
+  switch (keycode) {
+    case Key.LEFT:
+      blob.style.left = parseInt(blob.style.left) - 5 + 'px';
+      movePointer(keycode);
+      direction = "Left";
+      checkBoundary(blob,direction);
+      break;
+    case Key.UP:
+      blob.style.top = parseInt(blob.style.top) - 5 + 'px';
+      movePointer(keycode);
+      direction = "Up";
+      checkBoundary(blob,direction);
+      break;
+    case Key.RIGHT:
+      blob.style.left = parseInt(blob.style.left) + 5 + 'px';
+      movePointer(keycode);
+      direction = "Right";
+      checkBoundary(blob,direction);
+      break;
+    case Key.DOWN:
+      blob.style.top = parseInt(blob.style.top) + 5 + 'px';
+      movePointer(keycode);
+      direction = "Down";
+      checkBoundary(blob,direction);
+      break;
+    case 32: // space button
+      switch (direction) {
+        case "Left":
+          playerShootLeft();
+          break;
+        case "Right":
+          playerShootRight();
+          break;
+        case "Up":
+          playerShootUp();
+          break;
+        case "Down":
+          playerShootDown();
         break;
-        case Key.UP:
-          blob.style.top = parseInt(blob.style.top) - 5 + 'px';
-          movePointer(keycode);
-          direction = "Up";
-          checkBoundary(blob,direction);
-        break;
-        case Key.RIGHT:
-          blob.style.left = parseInt(blob.style.left) + 5 + 'px';
-          movePointer(keycode);
-          direction = "Right";
-          checkBoundary(blob,direction);
-
-        break;
-        case Key.DOWN:
-          blob.style.top = parseInt(blob.style.top) + 5 + 'px';
-          movePointer(keycode);
-          direction = "Down";
-          checkBoundary(blob,direction);
-        break;
-        case 32: // space button
-            
-            switch (direction) {
-              case "Left":
-                playerShootLeft();
-              break;
-              case "Right":
-                playerShootRight();
-              break;
-              case "Up":
-                playerShootUp();
-              break;
-              case "Down":
-                playerShootDown();
-              break;
-            }
-        break;
-        default:
-            return;
-    }
-    for (let i = 0; i < pelletes.length; i++){
-      if (cross(pelletes[i], blob)){
-        var board = document.querySelector(".game-board");
-        board.removeChild(pelletes[i]);
-        playerScore= playerScore + 3;
-        score.innerHTML = userName+" : "+playerScore;
-          pelletes.splice(i, 1);
-        pelletes.push(createpellet());
       }
-    }
-    for (let i = 0; i < masks.length; i++){
-      if (cross(masks[i], blob)){
-        var board = document.querySelector(".game-board");
-        board.removeChild(masks[i]);
-          playerScore = playerScore - 20;
-        score.innerHTML = userName+" : "+playerScore;
-          masks.splice(i, 1);
-        masks.push(spawnmasks());
+      break;
+    default:
+    return;
+  }
+  for (let i = 0; i < pelletes.length; i++){
+    if (cross(pelletes[i], blob)){
+      var board = document.querySelector(".game-board");
+      board.removeChild(pelletes[i]);
+      playerScore= playerScore + 3;
+      score.innerHTML = userName+" : "+playerScore;
+      pelletes.splice(i, 1);
+      pelletes.push(createpellet());
       }
+  }
+  for (let i = 0; i < masks.length; i++){
+    if (cross(masks[i], blob)){
+      var board = document.querySelector(".game-board");
+      board.removeChild(masks[i]);
+      playerScore = playerScore - 20;
+      score.innerHTML = userName+" : "+playerScore;
+      masks.splice(i, 1);
+      masks.push(spawnmasks());
     }
-    for (let i = 0; i < sanitizers.length; i++){
-      if (cross(sanitizers[i], blob)){
-        var board = document.querySelector(".game-board");
-        board.removeChild(sanitizers[i]);
-        playerScore= playerScore - 25;
-        score.innerHTML = userName+" : "+playerScore;
-          sanitizers.splice(i, 1);
-        sanitizers.push(spawnsan());
-      }
-      
+  }
+  for (let i = 0; i < sanitizers.length; i++){
+    if (cross(sanitizers[i], blob)){
+      var board = document.querySelector(".game-board");
+      board.removeChild(sanitizers[i]);
+      playerScore= playerScore - 25;
+      score.innerHTML = userName+" : "+playerScore;
+      sanitizers.splice(i, 1);
+      sanitizers.push(spawnsan());
     }
+  }
 }
 listener('keydown', document, move);
 
-// window.addEventListener('keydown', function() {
-//   document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
-// });
 function checkBoundary(element, direction){
-  // var blob = document.getElementById("icon");
   switch (direction) {
     case "Left":
       if(10 > parseInt(element.style.left)){
@@ -151,70 +139,58 @@ function checkBoundary(element, direction){
   }
 }
 
-  function message()//to display the chat text
-  {
-      init()
-      //var chat = document.getElementById("chat-input");
-      //document.getElementById("chat-form").innerHTML = chat.value;
-  }
   
-  function playerShootUp(){ // to shoot bullets upwards
-    var element = document.getElementById("icon");
-    var laser = document.getElementById("laser");
-    laser.style.top = parseInt(element.style.top) + 50 + 'px';
-    laser.style.left = parseInt(element.style.left) + 50 +'px';
-    let start = Date.now();
-    playerScore= playerScore - 5;
-        score.innerHTML = userName+" : "+playerScore;
-    let timer = setInterval(function() {
+function playerShootUp(){ // to shoot bullets upwards
+  var element = document.getElementById("icon");
+  var laser = document.getElementById("laser");
+  laser.style.top = parseInt(element.style.top) + 50 + 'px';
+  laser.style.left = parseInt(element.style.left) + 50 +'px';
+  let start = Date.now();
+  playerScore= playerScore - 5;
+  score.innerHTML = userName+" : "+playerScore;
+  let timer = setInterval(function() {
+      let timePassed = Date.now() - start;
+      laser.style.top = parseInt(laser.style.top) -8 +'px';
+      shootSanitizer();
+      shootMask();
+      if (timePassed >= 2000)
+        {clearInterval(timer); return;}
+  }, 20);
+}
+
+function playerShootDown(){ // to shoot bullets downwards
+  var element = document.getElementById("icon");
+  var laser = document.getElementById("laser");
+  laser.style.top = parseInt(element.style.top) + 50 + 'px';
+  laser.style.left = parseInt(element.style.left) + 50 +'px';
+  let start = Date.now();
+  playerScore= playerScore - 5;
+  score.innerHTML = userName+" : "+playerScore;
+  let timer = setInterval(function() {
+      let timePassed = Date.now() - start;
+      laser.style.top = parseInt(laser.style.top) +8 +'px';
+      shootSanitizer();
+      shootMask();
+      if (timePassed >= 2000)
+        {clearInterval(timer); return;} 
+  }, 20);
+}
+
+function playerShootRight(){// to shoot bullets to the right
+  var element = document.getElementById("icon");
+  document.getElementById("laser").style.transform = "rotate(90deg)";
+  var laser = document.getElementById("laser");
+  laser.style.top = parseInt(element.style.top) + 50 + 'px';
+  laser.style.left = parseInt(element.style.left) + 50 +'px';
+  let start = Date.now();
+  playerScore= playerScore - 5;
+  score.innerHTML = userName+" : "+playerScore;
+  let timer = setInterval(function() {
     let timePassed = Date.now() - start;
-    laser.style.top = parseInt(laser.style.top) -8 +'px';
-    
-    shootSanitizer();
-    shootMask();
     if (timePassed >= 2000)
-    {clearInterval(timer); return;}
-  }, 20);}
-
-  function playerShootDown(){ // to shoot bullets downwards
-    var element = document.getElementById("icon");
-    var laser = document.getElementById("laser");
-    laser.style.top = parseInt(element.style.top) + 50 + 'px';
-    laser.style.left = parseInt(element.style.left) + 50 +'px';
-    let start = Date.now();
-    playerScore= playerScore - 5;
-        score.innerHTML = userName+" : "+playerScore;
-    let timer = setInterval(function() {
-    let timePassed = Date.now() - start;
-
-    
-    laser.style.top = parseInt(laser.style.top) +8 +'px';
-
-    shootSanitizer();
-    shootMask();
-    if (timePassed >= 2000)
-    {clearInterval(timer); return;}
-    
-  }, 20);}
-
-  function playerShootRight(){// to shoot bullets to the right
-    var element = document.getElementById("icon");
-    document.getElementById("laser").style.transform = "rotate(90deg)";
-    var laser = document.getElementById("laser");
-    laser.style.top = parseInt(element.style.top) + 50 + 'px';
-    laser.style.left = parseInt(element.style.left) + 50 +'px';
-    let start = Date.now();
-    playerScore= playerScore - 5;
-        score.innerHTML = userName+" : "+playerScore;
-    let timer = setInterval(function() {
-    let timePassed = Date.now() - start;
-
-    if (timePassed >= 2000)
-    {clearInterval(timer); return;}
+      {clearInterval(timer); return;}
     laser.style.left = parseInt(laser.style.left) +8 +'px';
-
     shootSanitizer();
-
     shootMask();
   }, 20);}
 
@@ -226,24 +202,21 @@ function checkBoundary(element, direction){
     laser.style.left = parseInt(element.style.left) + 50 +'px';
     let start = Date.now();
     playerScore= playerScore - 5;
-        score.innerHTML = userName+" : "+playerScore;
+    score.innerHTML = userName+" : "+playerScore;
     let timer = setInterval(function() {
     let timePassed = Date.now() - start;
-
     if (timePassed >= 2000)
-    {clearInterval(timer); return;}
+      {clearInterval(timer); return;}
     laser.style.left = parseInt(laser.style.left) -8 +'px';
-
     shootSanitizer();
-
     shootMask();
+  }, 20);
+}
 
-  }, 20);}
-
-  function movePointer(keycode){
-      var pointer = document.getElementById("arrow");
-      var element = document.getElementById("icon");
-        switch (keycode) {
+function movePointer(keycode){
+    var pointer = document.getElementById("arrow");
+    var element = document.getElementById("icon");
+    switch (keycode) {
         
         //Left
         case 37:
@@ -269,7 +242,8 @@ function checkBoundary(element, direction){
             pointer.style.top = parseInt(element.style.top) + 50 + 'px';
             pointer.style.left = parseInt(element.style.left) + 50 +'px';
         break;
-}}
+    }
+};
 
 
 function cross(element1, element2) {
