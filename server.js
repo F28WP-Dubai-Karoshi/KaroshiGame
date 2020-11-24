@@ -54,6 +54,12 @@ var Player = function(name,id){
     score : 0,
     id: id
     }
+    // self.updateScore = function (score) {
+    //     self.score = score;
+    // }
+    // self.changeName = function(name) {
+    //     self.name = name;
+    // }
     return self;
 }
 
@@ -70,7 +76,7 @@ io.sockets.on('connection', function(socket) {
     var player = new Player(name = 'anonymous', socket.id);
     //add name to the player
     socket.on('username-submit', function(username) {
-        player.changeName(username);
+        player.name = username;
         console.log("hello" + username); // for debugging
         io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
     })
@@ -79,19 +85,16 @@ io.sockets.on('connection', function(socket) {
     SCORES_LIST[socket.id] = player;
     SOCKET_LIST[socket.id] = socket;
 
-
-
     //listen for new score updates from user, then change player.score accordingly
     socket.on('sendNewScore', function(score) {
-        player.updateScore(score);
+        player.score = score;
     });
-
+   
     //chat feature
     socket.on('submitted_message', function(message) {
-       io.emit('submitted_message', '<strong>' + player.name + ' : </strong>' + message);
-       console.log(message);
+        io.emit('submitted_message', '<strong>' + player.name + ' : </strong>' + message);
+        console.log(message);
     });
-
 
     socket.on('disconnect', function() {
         console.log(socket.id + 'has left the game.')
@@ -100,32 +103,36 @@ io.sockets.on('connection', function(socket) {
         io.emit('participant', '<i>' + player.name + ' left the game...</i>');
     });
 
+
+
 });
-    //emit score every 40 milliseconds
-    setInterval(function(){
-        // info about name and scores of everyone to be sent to every player
-        var pack = [];
-        for(var i in SCORES_LIST){
-            var score_player = SCORES_LIST[i];
-            pack.push({
-                name: score_player.name,
-                score: score_player.score
-            })
-        }
-        sortedPack = updateLeaderBoard(pack);
-        for(var j in SOCKET_LIST){
-            var socket = SOCKET_LIST[j];
-            socket.emit('updateScores', pack);
-        }
 
-    },50);
-
-    function updateLeaderBoard(list) {
-        let newList = [];
-        list.sort(function(a, b){ return b.score - a.score });
-        for(let i = 0; i<list.length; i++){
-            newList[i] = (i+1) + " - " + list[i].name + " : " + list[i].score;
-        }
-        return newList;
+//emit score every 40 milliseconds
+setInterval(function(){
+    // info about name and scores of everyone to be sent to every player
+    var pack = [];
+    for(var i in SCORES_LIST){
+        var score_player = SCORES_LIST[i];
+        pack.push({
+            name: score_player.name,
+            score: score_player.score
+        })
     }
+        
+    sortedPack = updateLeaderBoard(pack);
     
+    for(var j in SOCKET_LIST){
+        var socket = SOCKET_LIST[j];
+        socket.emit('updateScores', sortedPack);
+    }
+},50);
+
+function updateLeaderBoard(list) {
+    let newList = [];
+    list.sort(function(a, b){ return b.score - a.score });
+    for(let i = 0; i<list.length; i++){
+        newList[i] = (i+1) + " - " + list[i].name + " : " + list[i].score;
+    }
+    return newList;
+}
+

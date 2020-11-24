@@ -75,72 +75,114 @@ body{
 } 
 
 h2{
-    color:white;
-    float:right;
-    position:absolute;
-    right: 150px;
-    top: 68px;
-    z-index: 6;
-} 
-
-#board
-{
-    background-color: #631572a8;
-    font-size: 12px;
-    position:absolute;
-    width: 250px;
-    height: 150px;
-    color: white;
-    right: 115px;
-    top: 85px;
-    padding:15px;
-    padding-top: 45px;
-    z-index: 5;
-    border-radius: 10px;
-    border: 1px solid whitesmoke;
-}
-.chatbox {
     color: whitesmoke;
     position: absolute;
-    width: auto;
-    height: auto;
-    bottom: 110px;
-    right: 110px;
-    opacity: 1;
-}
-/*
-.chatbox:hover{
-    opacity: 1;
-}
-*/
-#chat-list {
-    position: absolute;
-    padding: 5px;
-    width: 290px;
-    height: 300px;
-    bottom: 0px;
-    left: 0px;
-    background-color:#0c1a69b0;
-    border-radius: 10px;
-    border: 2px solid whitesmoke; 
-    z-index: -1;
-}
+    right: 210px;
+    bottom:610px;
+    z-index: 2;
+} 
 
+
+#board {
+    position: absolute;
+    color: white;
+    right: 20px;
+    bottom: 455px;
+    background-color: #631572a8;
+    width: 400px;
+    height: 170px;
+    border: 2px solid whitesmoke; 
+    border-radius: 10px;
+    scroll-behavior: smooth;
+    text-align: center;
+    overflow-y: scroll;
+    padding-top: 35px;
+    
+}
+#chatbox{
+    color: whitesmoke;
+    position: absolute;
+    width: 400px;
+    height: 370px;
+    background-color:#0c1a69b0;
+    right: 20px;
+    bottom: 70px;
+    border: 2px solid whitesmoke; 
+    border-radius: 10px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+#chat-form {
+    position: absolute;
+    padding: 0px;
+    width: 400px;
+    height: 30px;
+    bottom: 35px;
+    right: 20px;    
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
 #chat-input {
-    background-color: #0d1f83;
-    width: 200px;
-    height: 20px;
-    padding: 8px;
+    background-color:#0c1a69b0;
+    width: 300px;
+    height: 30px;
+    padding: 0px;
     border: 1px solid whitesmoke;
     opacity: 1;
     z-index: 6;
     border-radius: 5px;
     color: whitesmoke;
+} 
+#send{
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-family:'Krona One', sans-serif;
+    border-radius: 5px;
+    background-color: #ffffff;
 }
-/*
-#chat-input:hover{
-    opacity: 1;
-}*/
+#messages{
+    font-size: 10px;
+}
+#messages li {
+    padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+   color: rgb(120, 222, 253);
+}
+
+#chatbox::-webkit-scrollbar {
+    width: 5px;               
+}
+#chatbox::-webkit-scrollbar-track {
+    background: #0c1a69b0;        
+}
+#chatbox::-webkit-scrollbar-thumb {
+    background-color: #0c1a69b0;    
+    border-radius: 10px;       
+    border: 2px;  
+    border-color: #0c1a69b0;
+    border-style: solid;
+}
+#board::-webkit-scrollbar {
+    width: 5px;               
+}
+#board::-webkit-scrollbar-track {
+    background:  #631572a8;        
+}
+#board::-webkit-scrollbar-thumb {
+    background-color: #9000ff;    
+    border-radius: 10px;       
+    border: 2px;  
+    border-color: #fafafa;
+    border-style: solid;
+}
+
 .pellets{
     z-index: -1;
     animation: wigglePellets 3s ease-in-out infinite;
@@ -173,14 +215,7 @@ h2{
     75% {transform: translate(+3px,0px);}
     100% {transform: translate(-3px,0px);}
 }
-#send{
-    text-align: center;
-    font-size: 16px;
-    padding: 5px 7px;
-    font-family:'Krona One', sans-serif;
-    border-radius: 5px;
-    
-}
+
 
 #icon{   
     position: absolute;
@@ -208,13 +243,6 @@ h2{
     padding: 3px;
     position: absolute;
 }
-
-/* .name-space{
-    position: relative;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-} */
 
 .game-board {
     height: 700px;
