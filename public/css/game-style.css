@@ -83,7 +83,7 @@ h2{
     z-index: 6;
 } 
 
-#board
+/* #board
 {
     background-color: #631572a8;
     font-size: 12px;
@@ -98,25 +98,52 @@ h2{
     z-index: 5;
     border-radius: 10px;
     border: 1px solid whitesmoke;
+} */
+#board {
+    position: absolute;
+    color: white;
+    right: 20px;
+    bottom: 455px;
+    background-color: #631572a8;
+    width: 400px;
+    height: 170px;
+    border: 2px solid whitesmoke; 
+    border-radius: 10px;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    
 }
 #chatbox{
     color: whitesmoke;
     position: absolute;
     width: 400px;
-    height: 400px;
+    height: 370px;
     background-color:#0c1a69b0;
     right: 20px;
-    bottom: 40px;
+    bottom: 70px;
     border: 2px solid whitesmoke; 
     border-radius: 10px;
     scroll-behavior: smooth;
-    list-style-type: none;
+    overflow-y: scroll;
+}
+#chat-form {
+    position: absolute;
+    padding: 0px;
+    width: 400px;
+    height: 30px;
+    bottom: 35px;
+    right: 20px;    
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 #chat-input {
-    background-color: #0d1f83;
-    width: 200px;
-    height: 20px;
-    padding: 8px;
+    background-color:#0c1a69b0;
+    width: 300px;
+    height: 30px;
+    padding: 0px;
     border: 1px solid whitesmoke;
     opacity: 1;
     z-index: 6;
@@ -124,12 +151,13 @@ h2{
     color: whitesmoke;
 } 
 #send{
+    width: 100px;
+    height: 30px;
     text-align: center;
     font-size: 16px;
-    padding: 5px 7px;
     font-family:'Krona One', sans-serif;
     border-radius: 5px;
-    
+    background-color: #ffffff;
 }
 #messages{
     font-size: 10px;
@@ -138,19 +166,42 @@ h2{
     padding: 5px 10px;
 }
 
-/* #messages li:nth-child(odd) {
-    background: rgba(238, 238, 238, 0.295);
-} */
-
-#chat-form {
-    position: absolute;
-    text-align: center;
-    padding: 5px;
-    width: 400px;
-    height: auto;
-    bottom: 0px;    
-    z-index: 1;
+#messages li:nth-child(odd) {
+   color: rgb(120, 222, 253);
 }
+
+#chatbox::-webkit-scrollbar {
+    width: 5px;               
+}
+#chatbox::-webkit-scrollbar-track {
+    background: #0c1a69b0;        
+}
+#chatbox::-webkit-scrollbar-thumb {
+    background-color: #0c1a69b0;    
+    border-radius: 10px;       
+    border: 2px;  
+    border-color: #0c1a69b0;
+    border-style: solid;
+}
+#board::-webkit-scrollbar {
+    width: 5px;               
+}
+#board::-webkit-scrollbar-track {
+    background:  #631572a8;        
+}
+#board::-webkit-scrollbar-thumb {
+    background-color: #9000ff;    
+    border-radius: 10px;       
+    border: 2px;  
+    border-color: #fafafa;
+    border-style: solid;
+}
+  
+  
+
+
+
+
 .pellets{
     animation: wigglePellets 3s ease-in-out infinite;
 }
@@ -208,13 +259,6 @@ h2{
     padding: 3px;
     position: absolute;
 }
-
-/* .name-space{
-    position: relative;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-} */
 
 .game-board {
     height: 700px;
