@@ -54,12 +54,6 @@ var Player = function(name,id){
     score : 0,
     id: id
     }
-    self.updateScore = function (score) {
-        self.score = score;
-    }
-    self.changeName = function(name) {
-        self.name = name;
-    }
     return self;
 }
 
@@ -72,13 +66,13 @@ const io = require('socket.io')(server);
 
 io.sockets.on('connection', function(socket) {
     console.log(socket.id + 'has joined the game.');
-
     //create a player
-    var player = new Player(name = 'anonymous penguin', socket.id);
+    var player = new Player(name = 'anonymous', socket.id);
     //add name to the player
     socket.on('username-submit', function(username) {
         player.changeName(username);
         console.log("hello" + username); // for debugging
+        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
     })
 
 
@@ -92,11 +86,18 @@ io.sockets.on('connection', function(socket) {
         player.updateScore(score);
     });
 
+    //chat feature
+    socket.on('submitted_message', function(message) {
+       io.emit('submitted_message', '<strong>' + player.name + ' : </strong>' + message);
+       console.log(message);
+    });
+
 
     socket.on('disconnect', function() {
         console.log(socket.id + 'has left the game.')
         delete SCORES_LIST[socket.id];
         delete SOCKET_LIST[socket.id];
+        io.emit('participant', '<i>' + player.name + ' left the game...</i>');
     });
 
 });
@@ -111,6 +112,7 @@ io.sockets.on('connection', function(socket) {
                 score: score_player.score
             })
         }
+        sortedPack = updateLeaderBoard(pack);
         for(var j in SOCKET_LIST){
             var socket = SOCKET_LIST[j];
             socket.emit('updateScores', pack);
@@ -118,3 +120,12 @@ io.sockets.on('connection', function(socket) {
 
     },50);
 
+    function updateLeaderBoard(list) {
+        let newList = [];
+        list.sort(function(a, b){ return b.score - a.score });
+        for(let i = 0; i<list.length; i++){
+            newList[i] = (i+1) + " - " + list[i].name + " : " + list[i].score;
+        }
+        return newList;
+    }
+    
