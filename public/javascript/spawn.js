@@ -1,7 +1,3 @@
-//where we create a
-
-// const socket = io();
-
 //where we create both the debuffs
 function spawnmasks(){
     var board = document.querySelector(".game-board");

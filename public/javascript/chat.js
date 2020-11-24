@@ -1,6 +1,4 @@
 var chatform = document.getElementById('chat-form');
-
-    // 
     chatform.addEventListener('submit', function(e) {
         e.preventDefault(); // prevents page reloading
         //send the value of the input to server through socket

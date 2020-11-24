@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "dev":"nodemon server"
+    "dev":"nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,13 @@
   "homepage": "https://github.com/F28WP-Dubai-Karoshi/KaroshiGame#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "socket.io": "^2.3.0",
+    "sql-template-strings": "^2.2.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
   }
 }
