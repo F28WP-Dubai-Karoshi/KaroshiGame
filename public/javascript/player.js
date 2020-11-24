@@ -3,8 +3,6 @@ var playerScore = 0;
 var userName = "anonymous";
 var name = document.getElementsByClassName("name-space");
 
-
-
 var submit = document.getElementById("submit");
     submit.onclick = function(){
     document.getElementById("username").style.visibility="hidden";
@@ -36,7 +34,6 @@ function move(evt) {
   
   var info = document.getElementById("chat-form");
   var blob = document.getElementById("icon");
-  // var direction = "Up";
   switch (keycode) {
     case Key.LEFT:
       blob.style.left = parseInt(blob.style.left) - 5 + 'px';
@@ -153,7 +150,7 @@ function playerShootUp(){ // to shoot bullets upwards
       laser.style.top = parseInt(laser.style.top) -8 +'px';
       shootSanitizer();
       shootMask();
-      if (timePassed >= 2000)
+      if (timePassed >= 4000)
         {clearInterval(timer); return;}
   }, 20);
 }
@@ -171,7 +168,7 @@ function playerShootDown(){ // to shoot bullets downwards
       laser.style.top = parseInt(laser.style.top) +8 +'px';
       shootSanitizer();
       shootMask();
-      if (timePassed >= 2000)
+      if (timePassed >= 4000)
         {clearInterval(timer); return;} 
   }, 20);
 }
@@ -187,7 +184,7 @@ function playerShootRight(){// to shoot bullets to the right
   score.innerHTML = userName+" : "+playerScore;
   let timer = setInterval(function() {
     let timePassed = Date.now() - start;
-    if (timePassed >= 2000)
+    if (timePassed >= 4000)
       {clearInterval(timer); return;}
     laser.style.left = parseInt(laser.style.left) +8 +'px';
     shootSanitizer();
@@ -205,7 +202,7 @@ function playerShootRight(){// to shoot bullets to the right
     score.innerHTML = userName+" : "+playerScore;
     let timer = setInterval(function() {
     let timePassed = Date.now() - start;
-    if (timePassed >= 2000)
+    if (timePassed >= 4000)
       {clearInterval(timer); return;}
     laser.style.left = parseInt(laser.style.left) -8 +'px';
     shootSanitizer();

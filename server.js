@@ -1,39 +1,21 @@
 //create server
 const express =  require("express");
 const app = express();
-//var session = require('express-session');
 const path = require("path");
-const https = require("https");
-const fs = require("fs");
-//const serv = sslServer.Server(app);
-
-app.use(express.static('public'));
-app.get("/",(req,res,next)=>{
-    res.sendFile('index.html', {root: __dirname});
-});
-
-const sslServer =https.createServer({
-    key: fs.readFileSync(path.join(__dirname,"cert","key.pem")),
-    cert: fs.readFileSync(path.join(__dirname,"cert","cert.pem"))
-},app)
-
+const http = require("http");
+const serv = http.Server(app); 
 const morgan = require("morgan");
 app.use(morgan('dev'));
 
-
-
-//const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
-const server = sslServer.listen(PORT, function(){
+serv.listen(PORT, function(){
     console.log("listening at 3000");
 });
 
-
-// app.use(express.static('public'));
-//send the index.html file
-// app.get('/', function(req, res){
-//     res.sendFile('index.html', {root: __dirname});
-// });
+app.use(express.static('public'));
+app.get("/",function(req,res){
+    res.sendFile('index.html', {root: __dirname});
+});
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -44,22 +26,13 @@ app.use(chatRouter);
 const createDB = require('./daos/db');
 createDB();
 
-//server.listen(PORT, () =>
-//    console.log("Running the server, port = " + PORT)
-//);
-//player constructor
+
 var Player = function(name,id){
     self = {
     name: name,
     score : 0,
     id: id
     }
-    // self.updateScore = function (score) {
-    //     self.score = score;
-    // }
-    // self.changeName = function(name) {
-    //     self.name = name;
-    // }
     return self;
 }
 
@@ -68,7 +41,7 @@ SOCKET_LIST = {};
 //list of scores&players
 SCORES_LIST = {};
 //loading socket.io and binding to server
-const io = require('socket.io')(server);
+const io = require('socket.io')(serv);
 
 io.sockets.on('connection', function(socket) {
     console.log(socket.id + 'has joined the game.');

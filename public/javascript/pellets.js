@@ -1,4 +1,3 @@
-
 function createpellet(){
     var board = document.querySelector(".game-board");
     let pellet = document.createElement("img");

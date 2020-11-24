@@ -219,7 +219,6 @@ h2{
 
 #icon{   
     position: absolute;
-    /*top: 240px;*/
     width: 100px;
     height: 100px;
     z-index: 2;
@@ -242,6 +241,7 @@ h2{
     display: inline-block;
     padding: 3px;
     position: absolute;
+    z-index: 3;
 }
 
 .game-board {
