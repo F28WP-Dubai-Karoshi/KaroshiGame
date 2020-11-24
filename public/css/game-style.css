@@ -75,30 +75,14 @@ body{
 } 
 
 h2{
-    color:white;
-    float:right;
-    position:absolute;
-    right: 150px;
-    top: 68px;
-    z-index: 6;
+    color: whitesmoke;
+    position: absolute;
+    right: 210px;
+    bottom:610px;
+    z-index: 2;
 } 
 
-/* #board
-{
-    background-color: #631572a8;
-    font-size: 12px;
-    position:absolute;
-    width: 250px;
-    height: 150px;
-    color: white;
-    right: 115px;
-    top: 85px;
-    padding:15px;
-    padding-top: 45px;
-    z-index: 5;
-    border-radius: 10px;
-    border: 1px solid whitesmoke;
-} */
+
 #board {
     position: absolute;
     color: white;
@@ -110,7 +94,9 @@ h2{
     border: 2px solid whitesmoke; 
     border-radius: 10px;
     scroll-behavior: smooth;
+    text-align: center;
     overflow-y: scroll;
+    padding-top: 35px;
     
 }
 #chatbox{
