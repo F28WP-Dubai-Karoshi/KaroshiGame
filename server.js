@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('username-submit', function(username) {
         player.changeName(username);
         console.log("hello" + username); // for debugging
-        socket.emit('participant', '<i>' + player.name + ' joined the game...</i>');
+        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
     })
     
 
@@ -65,14 +65,15 @@ io.sockets.on('connection', function(socket) {
    
     //chat feature
     socket.on('submitted_message', function(message) {
-        socket.emit('submitted_message', '<strong>' + player.name + ' : </strong>' + message);
+        io.emit('submitted_message', '<strong>' + player.name + ' : </strong>' + message);
+        console.log(message);
     });
     
     socket.on('disconnect', function() {
         console.log(socket.id + 'has left the game.')
         delete SCORES_LIST[socket.id];
         delete SOCKET_LIST[socket.id];
-        socket.emit('participant', '<i>' + player.name + ' left the game...</i>');
+        io.emit('participant', '<i>' + player.name + ' left the game...</i>');
         
     });
 

@@ -131,14 +131,16 @@ h2{
     border-radius: 5px;
     
 }
-
-#chatbox li {
+#messages{
+    font-size: 10px;
+}
+#messages li {
     padding: 5px 10px;
 }
 
-#chatbox li:nth-child(odd) {
-    background: #eee;
-}
+/* #messages li:nth-child(odd) {
+    background: rgba(238, 238, 238, 0.295);
+} */
 
 #chat-form {
     position: absolute;

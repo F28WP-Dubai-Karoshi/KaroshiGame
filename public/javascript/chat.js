@@ -1,12 +1,7 @@
-function send() {
-     // to use enter to send message
-    // $('#chat-form').addEventListener('keydown', function(event) {
-    //     if (event.keyCode === 13) {
-    //     event.preventDefault();
-    //     }
-    // });
+var chatform = document.getElementById('chat-form');
 
-    $('#chat-form').submit(function(e) {
+    // 
+    chatform.addEventListener('submit', function(e) {
         e.preventDefault(); // prevents page reloading
         //send the value of the input to server through socket
         socket.emit('submitted_message', $('#chat-input').val());
@@ -26,4 +21,4 @@ function send() {
 
 
 
-}
+
