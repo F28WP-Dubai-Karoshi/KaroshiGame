@@ -1,7 +1,8 @@
 var score = document.querySelector(".score");
-var playerScore = 0;
+var playerScore = 50;
 var userName = "anonymous";
 var name = document.getElementsByClassName("name-space");
+var highest = 0;
 
 var submit = document.getElementById("submit");
     submit.onclick = function(){
@@ -18,14 +19,12 @@ var submit = document.getElementById("submit");
 }
 
 var Key = {LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40};
-  
 function listener(evt, element, fn) {
     if (window.addEventListener) 
         element.addEventListener(evt, fn, false);
     else
       element.attachEvent('on' + evt, fn);
-  }
-  
+}  
 
 function move(evt) {
   if (!evt)
@@ -36,42 +35,58 @@ function move(evt) {
   var blob = document.getElementById("icon");
   switch (keycode) {
     case Key.LEFT:
-      blob.style.left = parseInt(blob.style.left) - 5 + 'px';
-      movePointer(keycode);
-      direction = "Left";
-      checkBoundary(blob,direction);
+      if((playerScore>0)){
+        blob.style.left = parseInt(blob.style.left) - 5 + 'px';
+        movePointer(keycode);
+        direction = "Left";
+        checkBoundary(blob,direction);
+      }
       break;
     case Key.UP:
-      blob.style.top = parseInt(blob.style.top) - 5 + 'px';
-      movePointer(keycode);
-      direction = "Up";
-      checkBoundary(blob,direction);
+      if((playerScore>0)){
+        blob.style.top = parseInt(blob.style.top) - 5 + 'px';
+        movePointer(keycode);
+        direction = "Up";
+        checkBoundary(blob,direction);
+      }
       break;
     case Key.RIGHT:
-      blob.style.left = parseInt(blob.style.left) + 5 + 'px';
-      movePointer(keycode);
-      direction = "Right";
-      checkBoundary(blob,direction);
+      if((playerScore>0)){
+        blob.style.left = parseInt(blob.style.left) + 5 + 'px';
+        movePointer(keycode);
+        direction = "Right";
+        checkBoundary(blob,direction);
+      }
       break;
     case Key.DOWN:
-      blob.style.top = parseInt(blob.style.top) + 5 + 'px';
-      movePointer(keycode);
-      direction = "Down";
-      checkBoundary(blob,direction);
+      if((playerScore>0)){
+        blob.style.top = parseInt(blob.style.top) + 5 + 'px';
+        movePointer(keycode);
+        direction = "Down";
+        checkBoundary(blob,direction);
+      }
       break;
     case 32: // space button
       switch (direction) {
         case "Left":
-          playerShootLeft();
+          if((playerScore>0)){
+            playerShootLeft();
+          }
           break;
         case "Right":
-          playerShootRight();
+          if((playerScore>0)){
+            playerShootRight();
+          }
           break;
         case "Up":
-          playerShootUp();
+          if((playerScore>0)){
+            playerShootUp();
+          }
           break;
         case "Down":
-          playerShootDown();
+          if((playerScore>0)){
+            playerShootDown();
+          }
         break;
       }
       break;
@@ -109,7 +124,15 @@ function move(evt) {
     }
   }
 }
+
 listener('keydown', document, move);
+
+function highScore(){
+  if(playerScore>highest){
+    highest=playerScore
+  }
+}
+setInterval(highScore,100);
 
 function checkBoundary(element, direction){
   switch (direction) {
@@ -213,8 +236,7 @@ function playerShootRight(){// to shoot bullets to the right
 function movePointer(keycode){
     var pointer = document.getElementById("arrow");
     var element = document.getElementById("icon");
-    switch (keycode) {
-        
+    switch (keycode) {       
         //Left
         case 37:
             document.getElementById("arrow").style.transform = "rotate(135deg)";
