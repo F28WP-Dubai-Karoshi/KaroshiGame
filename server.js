@@ -26,12 +26,6 @@ var Player = function(name,id){
     score : 0,
     id: id
     }
-    // self.updateScore = function (score) {
-    //     self.score = score;
-    // }
-    // self.changeName = function(name) {
-    //     self.name = name;
-    // }
     return self;
 }
 

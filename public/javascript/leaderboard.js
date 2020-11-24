@@ -21,3 +21,10 @@ function displayScores(){
 
     }
 }
+//check for game over
+function gameOver(){
+    if(playerScore < 0){
+        alert('game over! your virus died! refresh page to start over');
+    }
+  }
+setInterval(gameOver, 100);

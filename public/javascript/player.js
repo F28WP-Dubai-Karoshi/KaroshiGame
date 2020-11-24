@@ -1,8 +1,6 @@
 var score = document.querySelector(".score");
 var playerScore = 0;
 var userName = "anonymous";
-var name = document.getElementsByClassName("name-space");
-
 
 
 var submit = document.getElementById("submit");
