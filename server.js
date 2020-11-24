@@ -26,12 +26,12 @@ var Player = function(name,id){
     score : 0,
     id: id
     }
-    self.updateScore = function (score) {
-        self.score = score;
-    }
-    self.changeName = function(name) {
-        self.name = name;
-    }
+    // self.updateScore = function (score) {
+    //     self.score = score;
+    // }
+    // self.changeName = function(name) {
+    //     self.name = name;
+    // }
     return self;
 }
 
@@ -49,7 +49,7 @@ io.sockets.on('connection', function(socket) {
     var player = new Player(name = 'anonymous penguin', socket.id);
     //add name to the player
     socket.on('username-submit', function(username) {
-        player.changeName(username);
+        player.name = username;
         console.log("hello" + username); // for debugging
         io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
     })
@@ -60,7 +60,7 @@ io.sockets.on('connection', function(socket) {
 
     //listen for new score updates from user, then change player.score accordingly
     socket.on('sendNewScore', function(score) {
-        player.updateScore(score);
+        player.score = score;
     });
    
     //chat feature
@@ -91,9 +91,38 @@ io.sockets.on('connection', function(socket) {
                 score: score_player.score
             })
         }
+        sortedPack = updateLeaderBoard(pack);
+        console.log(sortedPack);
         for(var j in SOCKET_LIST){
             var socket = SOCKET_LIST[j];
-            socket.emit('updateScores', pack);
+            socket.emit('updateScores', sortedPack);
         }
 
     },50);
+
+    function updateLeaderBoard(list) {
+        let newList = [];
+        list.sort(function(a, b){ return b.score - a.score });
+        for(let i = 0; i<list.length; i++){
+            newList[i] = (i+1) + " - " + list[i].name + " : " + list[i].score;
+        }
+        return newList;
+    //     for(let i=0; i<scores.length; i++) {
+    // //        if(i<scores.length){
+    //             let name = document.createElement("div");
+    //             //let score = document.createElement("div");
+    //             name.classList.add("name");
+    //             //score.classList.add("score");
+    //             name.innerText = (i+1) + " - " + scores[i].name + " : " + scores[i].score;
+    //             //score.innerText = scores[i].score;
+    
+    //             let scoreRow = document.createElement("div");
+    //             scoreRow.classList.add("row");
+    //             scoreRow.appendChild(name);
+    //             //scoreRow.appendChild(score);
+    //             leaderboard.appendChild(scoreRow);
+    
+    //        }
+            
+        // }
+    }
