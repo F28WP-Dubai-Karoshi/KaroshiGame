@@ -23,7 +23,7 @@ function displayScores(){
 }
 //check for game over
 function gameOver(){
-    if(playerScore<0){
+    if(playerScore <= 0){
         document.getElementById("high-score").innerHTML=highest;
         document.getElementById("end-screen").style.visibility="visible";
     }
