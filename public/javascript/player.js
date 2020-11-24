@@ -1,5 +1,5 @@
 var score = document.querySelector(".score");
-var playerScore=0;
+var playerScore = 0;
 var userName ="poggers";
 var name = document.getElementsByClassName("name-space");
 
@@ -39,7 +39,7 @@ function listener(evt, element, fn) {
       evt = window.event;
     var keycode = evt.keyCode || evt.which; 
   
-    var info = document.getElementById("chat-list");
+    var info = document.getElementById("chat-form");
     var blob = document.getElementById("icon");
     // var direction = "Up";
     switch (keycode) {
@@ -92,7 +92,7 @@ function listener(evt, element, fn) {
       if (cross(pelletes[i], blob)){
         var board = document.querySelector(".game-board");
         board.removeChild(pelletes[i]);
-        playerScore= playerScore + 5;
+        playerScore= playerScore + 3;
         score.innerHTML = userName+" : "+playerScore;
           pelletes.splice(i, 1);
         pelletes.push(createpellet());
@@ -102,7 +102,7 @@ function listener(evt, element, fn) {
       if (cross(masks[i], blob)){
         var board = document.querySelector(".game-board");
         board.removeChild(masks[i]);
-          playerScore = playerScore - 2;
+          playerScore = playerScore - 20;
         score.innerHTML = userName+" : "+playerScore;
           masks.splice(i, 1);
         masks.push(spawnmasks());
@@ -112,7 +112,7 @@ function listener(evt, element, fn) {
       if (cross(sanitizers[i], blob)){
         var board = document.querySelector(".game-board");
         board.removeChild(sanitizers[i]);
-        playerScore= playerScore - 3;
+        playerScore= playerScore - 25;
         score.innerHTML = userName+" : "+playerScore;
           sanitizers.splice(i, 1);
         sanitizers.push(spawnsan());
@@ -153,8 +153,9 @@ function checkBoundary(element, direction){
 
   function message()//to display the chat text
   {
-      var chat = document.getElementById("chat-input");
-      document.getElementById("chat-list").innerHTML = chat.value;
+      init()
+      //var chat = document.getElementById("chat-input");
+      //document.getElementById("chat-form").innerHTML = chat.value;
   }
   
   function playerShootUp(){ // to shoot bullets upwards
@@ -163,7 +164,8 @@ function checkBoundary(element, direction){
     laser.style.top = parseInt(element.style.top) + 50 + 'px';
     laser.style.left = parseInt(element.style.left) + 50 +'px';
     let start = Date.now();
-
+    playerScore= playerScore - 5;
+        score.innerHTML = userName+" : "+playerScore;
     let timer = setInterval(function() {
     let timePassed = Date.now() - start;
     laser.style.top = parseInt(laser.style.top) -8 +'px';
@@ -180,7 +182,8 @@ function checkBoundary(element, direction){
     laser.style.top = parseInt(element.style.top) + 50 + 'px';
     laser.style.left = parseInt(element.style.left) + 50 +'px';
     let start = Date.now();
-
+    playerScore= playerScore - 5;
+        score.innerHTML = userName+" : "+playerScore;
     let timer = setInterval(function() {
     let timePassed = Date.now() - start;
 
@@ -201,7 +204,8 @@ function checkBoundary(element, direction){
     laser.style.top = parseInt(element.style.top) + 50 + 'px';
     laser.style.left = parseInt(element.style.left) + 50 +'px';
     let start = Date.now();
-
+    playerScore= playerScore - 5;
+        score.innerHTML = userName+" : "+playerScore;
     let timer = setInterval(function() {
     let timePassed = Date.now() - start;
 
@@ -221,7 +225,8 @@ function checkBoundary(element, direction){
     laser.style.top = parseInt(element.style.top) + 50 + 'px';
     laser.style.left = parseInt(element.style.left) + 50 +'px';
     let start = Date.now();
-
+    playerScore= playerScore - 5;
+        score.innerHTML = userName+" : "+playerScore;
     let timer = setInterval(function() {
     let timePassed = Date.now() - start;
 

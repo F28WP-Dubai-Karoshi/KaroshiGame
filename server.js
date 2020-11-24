@@ -51,25 +51,33 @@ io.sockets.on('connection', function(socket) {
     socket.on('username-submit', function(username) {
         player.changeName(username);
         console.log("hello" + username); // for debugging
+        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
     })
     
 
     SCORES_LIST[socket.id] = player;
     SOCKET_LIST[socket.id] = socket;
-       
-
 
     //listen for new score updates from user, then change player.score accordingly
     socket.on('sendNewScore', function(score) {
         player.updateScore(score);
     });
-    
+   
+    //chat feature
+    socket.on('submitted_message', function(message) {
+        io.emit('submitted_message', '<strong>' + player.name + ' : </strong>' + message);
+        console.log(message);
+    });
     
     socket.on('disconnect', function() {
         console.log(socket.id + 'has left the game.')
         delete SCORES_LIST[socket.id];
         delete SOCKET_LIST[socket.id];
+        io.emit('participant', '<i>' + player.name + ' left the game...</i>');
+        
     });
+
+
 
 });
     //emit score every 40 milliseconds

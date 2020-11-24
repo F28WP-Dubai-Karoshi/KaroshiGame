@@ -5,8 +5,12 @@
     <link rel="stylesheet" href="css/game-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet"> <!--font style-->
     <script src="../socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        const socket = io();
+        //const socket = io();
+        socket = io.connect('http://localhost:3000');
     </script>
 </head>
 <body  class="game-page" onload="" onkeydown="" onkeyup="">
@@ -31,11 +35,15 @@
             <div class="name-space"></div>
             <img  src="images\redvir.png" id="icon" style="left:320px; top:70px;">
         </div>
-        <div class="chatbox">
-            <form id="chat-list"></form>       
-            <input id="chat-input" type="text"  placeholder="Type to chat" autocomplete="off" />
-            <button id="send" onclick="message()">Send</button>
-            <script>
+        <div id="chatbox"> 
+            <ul id = "messages"> </ul>
+        </div>
+        <form id="chat-form">      
+            <input id="chat-input" type="text"  placeholder="Type to chat" oninput="" autocomplete="off">
+            <button type ="submit" id ="send" onclick="">Send</button>
+            <!-- <input type="submit" value="send" id ="send" onclick="send()"> -->
+        </form> 
+            <!-- <script>
                 var chat = document.getElementById("chat-input"); // to use enter to send message
                 chat.addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {
@@ -43,9 +51,10 @@
                         document.getElementById("send").click();
                     }
                 });
-            </script>
+            </script> -->
         </div>     
     </div>
+        <script src="javascript/chat.js" defer></script>
         <script src="javascript/leaderboard.js" defer></script>
         <script src="javascript/pellets.js" defer></script>
         <script src="javascript/spawn.js" defer></script>

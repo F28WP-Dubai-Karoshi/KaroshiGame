@@ -4,7 +4,7 @@
   "description": "Play as a virus and get the highest score of each round. Shoot other players and eat pellets to increase your score, try to avoid the sanitizers and masks!",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "nodemon server.js",
     "dev":"nodemon server"
   },
   "repository": {
