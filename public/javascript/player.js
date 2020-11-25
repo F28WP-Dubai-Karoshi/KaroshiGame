@@ -22,32 +22,32 @@ playgame.onclick = function(){
 
 login.onclick = function() {
   console.log(`logging in!`);
-  username = document.getElementById("username").value;
+  userName = document.getElementById("username").value;
   password = document.getElementById("password").value;
   socket.emit('login', {name: username, pwd: password});
   disappear();
   document.getElementById("login").style.visibility="hidden";
   document.getElementById("password").style.visibility="hidden";
   if(document.getElementById("userName").value !==  ""){
-    username = document.getElementById("userName").value;
+    userName = document.getElementById("username").value;
 }
-if(username.length > 11){
-  username=username.substring(0,11);
+if(userName.length > 11){
+  userName=userName.substring(0,11);
 }
 }
 register.onclick = function() {
   console.log(`registering!`);
-  username = document.getElementById("username").value;
+  userName = document.getElementById("username").value;
   password = document.getElementById("password").value;
   socket.emit('register', {name: username, pwd: password});
   disappear();
   document.getElementById("register").style.visibility="hidden";
   document.getElementById("password").style.visibility="hidden";
   if(document.getElementById("username").value !==  ""){
-    username = document.getElementById("username").value;
+    userName = document.getElementById("username").value;
   }
-  if(username.length > 11){
-    username=username.substring(0,11);
+  if(userName.length > 11){
+    userName=userName.substring(0,11);
   }
 }
 

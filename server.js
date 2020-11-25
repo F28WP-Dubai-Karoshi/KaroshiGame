@@ -64,7 +64,7 @@ io.sockets.on('connection', function(socket) {
         console.log(`login event!`);
         console.log("database time");
         loginService(pseudoname,password,null);
-        player.name = pseudoname;
+        player.name = nameAndPwd.name;
         io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
         //we send the event 'participant' and a message including the pseudoname
     });
