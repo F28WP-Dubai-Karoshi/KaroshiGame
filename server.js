@@ -24,6 +24,7 @@ const chatRouter = require('./routes/post');
 app.use(chatRouter);
 
 const createDB = require('./daos/db');
+const { loginService } = require("./services/userServices");
 createDB();
 
 
@@ -54,10 +55,16 @@ io.sockets.on('connection', function(socket) {
         io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
     })
 
-
     SCORES_LIST[socket.id] = player;
     SOCKET_LIST[socket.id] = socket;
-
+    
+    socket.on('login', function(pseudoname,password){
+        console.log(`login event!`);
+        console.log("database time");
+        loginService(pseudoname,password,null);
+        //we send the event 'participant' and a message including the pseudoname
+        
+    })
     //listen for new score updates from user, then change player.score accordingly
     socket.on('sendNewScore', function(score) {
         player.score = score;
@@ -108,4 +115,5 @@ function updateLeaderBoard(list) {
     }
     return newList;
 }
+
 
