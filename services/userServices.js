@@ -1,4 +1,4 @@
-const { User } = require('../models/entities');
+//const { User } = require('../models/entities');
 const userDAO = require('../daos/userDAO');
 
 const loginService = (pseudoname, password, callback) => {

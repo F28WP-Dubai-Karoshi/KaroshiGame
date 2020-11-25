@@ -21,11 +21,11 @@ playgame.onclick = function(){
   socket.emit('username-submit', username);
 }
 
-login.onclick = function(){
+login.onclick = function() {
   console.log(`logging in!`);
   username = document.getElementById("username").value;
   password = document.getElementById("password").value;
-  socket.emit('login', username,password);
+  socket.emit('login', {name: username, pwd: password});
   
 }
 

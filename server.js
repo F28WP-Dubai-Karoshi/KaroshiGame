@@ -58,13 +58,14 @@ io.sockets.on('connection', function(socket) {
     SCORES_LIST[socket.id] = player;
     SOCKET_LIST[socket.id] = socket;
     
-    socket.on('login', function(pseudoname,password){
+    socket.on('login', function(nameAndPwd){
+        pseudoname = nameAndPwd.name;
+        password = nameAndPwd.pwd;
         console.log(`login event!`);
         console.log("database time");
         loginService(pseudoname,password,null);
         //we send the event 'participant' and a message including the pseudoname
-        
-    })
+    });
     //listen for new score updates from user, then change player.score accordingly
     socket.on('sendNewScore', function(score) {
         player.score = score;
