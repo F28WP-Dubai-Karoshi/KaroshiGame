@@ -27,7 +27,7 @@ const createDB = require('./daos/db');
 const { loginService } = require("./services/userServices");
 createDB();
 
-
+//player constructor
 var Player = function(name,id){
     self = {
     name: name,
@@ -48,7 +48,8 @@ io.sockets.on('connection', function(socket) {
     console.log(socket.id + 'has joined the game.');
     //create a player
     var player = new Player(name = 'anonymous', socket.id);
-    //add name to the player
+    
+    //event thrown when user wants to play as guest
     socket.on('username-submit', function(username) {
         player.name = username;
         console.log("hello" + username); // for debugging
@@ -58,27 +59,26 @@ io.sockets.on('connection', function(socket) {
     SCORES_LIST[socket.id] = player;
     SOCKET_LIST[socket.id] = socket;
     
+    //this event is thrown when user chooses to login
     socket.on('login', function(nameAndPwd){
-        pseudoname = nameAndPwd.name;
-        password = nameAndPwd.pwd;
         console.log(`login event!`);
         console.log("database time");
-        loginService(pseudoname,password,null);
         player.name = nameAndPwd.name;
+        loginService(player.name, nameAndPwd.pwd, null);
+        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
+        //we send the event 'participant' and a message including the pseudoname
+    });
+    
+    //event thrown when user wants to register
+    socket.on('register', function(nameAndPwd){
+        console.log(`login event!`);
+        console.log("database time");
+        player.name = nameAndPwd.name;
+        loginService(player.name, nameAndPwd.pwd, null);
         io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
         //we send the event 'participant' and a message including the pseudoname
     });
 
-    socket.on('register', function(nameAndPwd){
-        pseudoname = nameAndPwd.name;
-        password = nameAndPwd.pwd;
-        console.log(`login event!`);
-        console.log("database time");
-        loginService(pseudoname,password,null);
-        player.name = pseudoname;
-        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
-        //we send the event 'participant' and a message including the pseudoname
-    });
     //listen for new score updates from user, then change player.score accordingly
     socket.on('sendNewScore', function(score) {
         player.score = score;
