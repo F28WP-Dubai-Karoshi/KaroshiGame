@@ -12,7 +12,7 @@ serv.listen(PORT, function(){
     console.log("listening at 3000");
 });
 
-app.use(express.static('public'));
+app.use(express.static(__dirname+"/public"));
 app.get("/",function(req,res){
     res.sendFile('index.html', {root: __dirname});
 });
@@ -28,6 +28,12 @@ const { loginService } = require("./services/userServices");
 createDB();
 
 //player constructor
+// const createDB = require('./daos/db');
+// createDB();
+
+//loading socket.io and binding to server
+const io = require('socket.io')(serv);
+
 var Player = function(name,id){
     self = {
     name: name,
@@ -41,8 +47,6 @@ var Player = function(name,id){
 SOCKET_LIST = {};
 //list of scores&players
 SCORES_LIST = {};
-//loading socket.io and binding to server
-const io = require('socket.io')(serv);
 
 io.sockets.on('connection', function(socket) {
     console.log(socket.id + 'has joined the game.');
@@ -96,9 +100,6 @@ io.sockets.on('connection', function(socket) {
         delete SOCKET_LIST[socket.id];
         io.emit('participant', '<i>' + player.name + ' left the game...</i>');
     });
-
-
-
 });
 
 //emit score every 40 milliseconds
