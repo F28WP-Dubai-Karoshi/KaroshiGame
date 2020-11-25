@@ -14,13 +14,13 @@ const loginService = (pseudoname, password, callback) => {
                     // console.log(`new user ${insertId}, ${pseudoname}, ${email}`);
                     console.log(`new user ${insertId}, ${pseudoname}, ${password}`);
                     user = new User(insertId, pseudoname, password);
-                    callback(null, false, user);
+                    //callback(null, false, user);
                 }
             });
         } else {
             console.log(`Old user ${rows[0].id}, ${rows[0].pseudoname}, ${rows[0].password}`);
             user = new User(rows[0].id, rows[0].pseudoname, rows[0].password);
-            callback(null, true, user);
+            //callback(null, true, user);
         }
     });
 };

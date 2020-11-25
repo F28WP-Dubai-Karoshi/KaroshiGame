@@ -1,4 +1,5 @@
-const { Player } = require('../models/entities');
+// const { Player } = require('../models/entities');
+//const { User } = require('../models/entities');
 var SQL = require('sql-template-strings');
 const mysql = require('mysql');
 
@@ -88,7 +89,7 @@ function createUser(pseudoname, email, callback) {
 
 
 function deleteUser(id, callback) {
-    const insertUser = (SQL `DELETE from players.users where id = ${id};`);
+    const selectUser = (SQL `DELETE from players.users where id = ${id};`);
     getResult(selectUser, function(err, result) {
         if (!err) {
             console.log("Number of users inserted: " + result.affectedRows);
