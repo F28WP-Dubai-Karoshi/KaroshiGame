@@ -64,6 +64,19 @@ io.sockets.on('connection', function(socket) {
         console.log(`login event!`);
         console.log("database time");
         loginService(pseudoname,password,null);
+        player.name = pseudoname;
+        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
+        //we send the event 'participant' and a message including the pseudoname
+    });
+
+    socket.on('register', function(nameAndPwd){
+        pseudoname = nameAndPwd.name;
+        password = nameAndPwd.pwd;
+        console.log(`login event!`);
+        console.log("database time");
+        loginService(pseudoname,password,null);
+        player.name = pseudoname;
+        io.emit('participant', '<i>' + player.name + ' joined the game...</i>');
         //we send the event 'participant' and a message including the pseudoname
     });
     //listen for new score updates from user, then change player.score accordingly

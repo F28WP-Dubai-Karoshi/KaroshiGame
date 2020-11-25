@@ -26,7 +26,20 @@ login.onclick = function() {
   username = document.getElementById("username").value;
   password = document.getElementById("password").value;
   socket.emit('login', {name: username, pwd: password});
-  
+  document.getElementById("login").style.visibility="hidden";
+  document.getElementById("transparent-overlay").style.visibility="hidden";
+  document.getElementById("username").style.visibility="hidden";
+  document.getElementById("password").style.visibility="hidden";
+}
+register.onclick = function() {
+  console.log(`registering!`);
+  username = document.getElementById("username").value;
+  password = document.getElementById("password").value;
+  socket.emit('register', {name: username, pwd: password});
+  document.getElementById("register").style.visibility="hidden";
+  document.getElementById("transparent-overlay").style.visibility="hidden";
+  document.getElementById("username").style.visibility="hidden";
+  document.getElementById("password").style.visibility="hidden";
 }
 
 var Key = {LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40};
