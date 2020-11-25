@@ -1,4 +1,4 @@
-//const { Player } = require('../models/entities');
+const { Player } = require('../models/entities');
 var SQL = require('sql-template-strings');
 const mysql = require('mysql');
 
