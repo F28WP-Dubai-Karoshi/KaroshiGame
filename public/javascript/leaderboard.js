@@ -1,13 +1,14 @@
 
-//sorted list of strings (containing name and score) of players to be appended to leaderboard
 scores = [];
 
+//send players score the the server every 50 ms
 setInterval(function(){
     socket.emit('sendNewScore', playerScore);
 }, 50);
 
+//scores will contain sorted list of strings (containing name and score) of players to be appended to leaderboard
 socket.on('updateScores', (data) => {
-    scores = data;
+    scores = data; 
     displayScores();
 });
 
@@ -17,7 +18,7 @@ function displayScores(){
     for(let i = 0; i < scores.length; i++){
         let person = document.createElement("div");
         person.innerText = scores[i];
-        person.style.textAlign="center";
+        person.style.textAlign = "center";
         leaderboard.appendChild(person);
     }
 }

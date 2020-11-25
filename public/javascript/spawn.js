@@ -1,3 +1,8 @@
+function debuffs() {
+    mask = document.querySelectorAll("mask")
+    sanitizer = document.querySelectorAll("sanitizer")
+}
+
 //where we create both the debuffs
 function spawnmasks(){
     var board = document.querySelector(".game-board");
@@ -35,6 +40,7 @@ function spawnsan(){
     return san;
 }
 
+//generates random coordinates on the screen
 function randoms()
 {
     var randomx = parseInt(Math.random()* 1000);
