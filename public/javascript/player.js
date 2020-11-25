@@ -4,18 +4,29 @@ var userName = "anonymous";
 var name = document.getElementsByClassName("name-space");
 var highest = 0;
 
-var submit = document.getElementById("submit");
-    submit.onclick = function(){
-    document.getElementById("username").style.visibility="hidden";
-    document.getElementById("transparent-overlay").style.visibility="hidden";
-    document.getElementById("username-form").style.visibility="hidden";
-    if(document.getElementById("username").value !==  ""){
-        userName = document.getElementById("username").value;
-    }
-    if(userName.length > 11){
-      userName=userName.substring(0,11);
-    }
-    socket.emit('username-submit', userName);
+var login = document.getElementById("login");
+var register = document.getElementById("register");
+var playgame = document.getElementById("play");
+
+playgame.onclick = function(){
+  document.getElementById("play").style.visibility="hidden";
+  document.getElementById("transparent-overlay").style.visibility="hidden";
+  document.getElementById("username").style.visibility="hidden";
+  if(document.getElementById("username").value !==  ""){
+      username = document.getElementById("username").value;
+  }
+  if(userName.length > 11){
+    userName=userName.substring(0,11);
+  }
+  socket.emit('username-submit', username);
+}
+
+login.onclick = function(){
+  console.log(`logging in!`);
+  username = document.getElementById("username").value;
+  password = document.getElementById("password").value;
+  socket.emit('login', username,password);
+  
 }
 
 var Key = {LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40};
