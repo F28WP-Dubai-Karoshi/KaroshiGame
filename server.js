@@ -23,9 +23,9 @@ app.use(express.urlencoded());
 const chatRouter = require('./routes/post');
 app.use(chatRouter);
 
-const createDB = require('./daos/db');
-const { loginService } = require("./services/userServices");
-createDB();
+// const createDB = require('./daos/db');
+// const { loginService } = require("./services/userServices");
+// createDB();
 
 //player constructor
 // const createDB = require('./daos/db');
