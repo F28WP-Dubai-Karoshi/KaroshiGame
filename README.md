@@ -6,6 +6,7 @@ Play as a virus and get the highest score of each round. Shoot the sanitizer and
 - By eating pellets
 #### Lose points:
 - By colliding with sanitizers/masks
+- By shooting
 
 
 
