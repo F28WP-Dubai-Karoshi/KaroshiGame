@@ -80,10 +80,13 @@ body{
     width: 400px;
     height: auto;
     text-align: center;
-    color: rgb(255, 94, 255);
-    top: 20px;
+    color: #8ccdf3;
+    /* color: rgb(255, 94, 255); */
+    bottom: 690px;
     right: 20px;
-    font-size: 25px;
+    font-size: 30px;
+    text-shadow: 1px 1px 0 #718a7f,
+                2px 2px 0 #718a7f
 }
 
 h2{
@@ -165,7 +168,7 @@ h2{
 }
 
 #messages li:nth-child(odd) {
-   color: rgb(120, 222, 253);
+   color: rgb(204, 243, 255);
 }
 
 #chatbox::-webkit-scrollbar {

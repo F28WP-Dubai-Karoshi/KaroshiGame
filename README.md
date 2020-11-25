@@ -10,11 +10,11 @@
 **Play as a virus and work your way up the leaderboard by eating pellets and avoiding the masks and sanitizers. Chat with other people as you play!**
 </br>
 </br>
-|**Game Instructions**|
-|-----|
-|**1)** Eat pellets to gain points (+3pts) and work your way up the leaderboard.
- **2)** Beware of masks(-20pts) and sanitizers(-25pts), and avoid them as much as possible. 
- **3)** You can shoot the masks and sanitizers, but at the cost of 5 pts. |
+|**Game Instructions**                                                                       |
+|--------------------------------------------------------------------------------------------|
+|**1)** Eat pellets to gain points (+3pts) and work your way up the leaderboard.             |
+| **2)** Beware of masks(-20pts) and sanitizers(-25pts), and avoid them as much as possible. |
+| **3)** You can shoot the masks and sanitizers, but at the cost of 5 pts.                   |
 
 **Controls**
 | Move        | Shoot    |
@@ -23,9 +23,9 @@
 
 ---
 ## Index Page
-![](mockup/index.png)
+![](mockup/updatedIndex.png)
 ## Game Page
-![](mockup/game.png)
+![](mockup/gamePage-2.png)
 
 ---
 

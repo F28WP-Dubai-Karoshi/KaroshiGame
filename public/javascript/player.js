@@ -68,6 +68,7 @@ function listener(evt, element, fn) {
       element.attachEvent('on' + evt, fn);
 }  
 
+var direction = '';
 function move(evt) {
   if (!evt)
     evt = window.event;
