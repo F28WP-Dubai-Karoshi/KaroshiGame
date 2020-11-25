@@ -1,23 +1,65 @@
 var score = document.querySelector(".score");
 var playerScore = 50;
 var userName = "anonymous";
-var name = document.getElementsByClassName("name-space");
 var highest = 0;
 
-var submit = document.getElementById("submit");
-    submit.onclick = function(){
-    document.getElementById("username").style.visibility="hidden";
-    document.getElementById("transparent-overlay").style.visibility="hidden";
-    document.getElementById("username-form").style.visibility="hidden";
-    if(document.getElementById("username").value !==  ""){
-        userName = document.getElementById("username").value;
-    }
-    if(userName.length > 11){
-      userName=userName.substring(0,11);
-    }
-    socket.emit('username-submit', userName);
+//buttons
+var login = document.getElementById("login");
+var register = document.getElementById("register");
+var playgame = document.getElementById("play");
+
+//if user wants to play as guest
+playgame.onclick = function(){
+  if(document.getElementById("usernameGuest").value !==  ""){
+      userName = document.getElementById("usernameGuest").value;
+  }
+  if(userName.length > 11){
+    userName = userName.substring(0,11);
+  }
+  socket.emit('username-submit', userName);
+  document.getElementById("play").style.visibility="hidden";
+  document.getElementById("usernameGuest").style.visibility="hidden";
+  document.getElementById("transparent-overlay").style.visibility="hidden";
 }
 
+//if user wants to login
+login.onclick = function() {
+  console.log(`logging in!`);
+  if(document.getElementById("usernameLogin").value !==  ""){
+    userName = document.getElementById("usernameLogin").value;
+  }
+  if(userName.length > 11){
+    userName = userName.substring(0,11);
+  }
+    let password = document.getElementById("passwordLogin").value;
+    socket.emit('login', {name: userName, pwd: password});
+    document.getElementById("usernameLogin").style.visibility="hidden";
+    document.getElementById("login").style.visibility="hidden";
+    document.getElementById("passwordLogin").style.visibility="hidden";
+    document.getElementById("transparent-overlay").style.visibility="hidden";
+}
+
+//if user wants to register
+register.onclick = function() {
+  console.log(`registering!`);
+  if(document.getElementById("usernameReg").value !==  ""){
+    userName = document.getElementById("usernameReg").value;
+  }
+  if(userName.length > 11){
+    userName=userName.substring(0,11);
+  }
+    let password = document.getElementById("passwordReg").value;
+    socket.emit('register', {name: userName, pwd: password});
+    document.getElementById("usernameReg").style.visibility="hidden";
+    document.getElementById("register").style.visibility="hidden";
+    document.getElementById("passwordReg").style.visibility="hidden";
+    document.getElementById("transparent-overlay").style.visibility="hidden";
+}
+
+// function disappear(){
+//   //document.getElementById("transparent-overlay").style.visibility="hidden";
+//   //document.getElementById("username").style.visibility="hidden";
+// }
 var Key = {LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40};
 function listener(evt, element, fn) {
     if (window.addEventListener) 

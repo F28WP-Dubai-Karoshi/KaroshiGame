@@ -9,7 +9,7 @@ var con = mysql.createConnection({
 
 
 const find = function() {
-    const selectSessions = "SEELECT * from players.sessions ;";
+    const selectSessions = "SELECT * from players.sessions ;";
     con.connect(function(err) {
         if (err) throw err;
         //select all sessions
@@ -22,7 +22,7 @@ const find = function() {
 };
 
 const findById = function(id) {
-    const selectSession = "SEELECT * from players.sessions where id = ?";
+    const selectSession = "SELECT * from players.sessions where id = ?";
     con.connect(function(err) {
         if (err) throw err;
         //select session by id

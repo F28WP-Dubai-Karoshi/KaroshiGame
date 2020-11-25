@@ -267,3 +267,73 @@ h2{
     border: 2px solid whitesmoke;
 }
 
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #cd39eba1;
+    font-family: 'Krona One', sans-serif;
+  }
+  
+.tablinks {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #cd39eba1;
+    font-family: 'Krona One', sans-serif;
+}
+  /* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #6d1f7ca1;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #6d1f7ca1;
+}
+
+.tabcontent {
+    display: none;
+    margin: auto;
+    text-align: center;
+    background: #cd39eba1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 15px;
+    z-index: 5;
+  }
+
+  .submitbutton{
+    margin-top: 5px;
+    background-color: #530a8fce;
+    font-size: 25px;
+    font-family: 'Krona One', sans-serif;
+    text-align: center;
+    border-radius: 15px;
+    border: 3px solid black;
+    width: 50%;
+    z-index: 5;
+}
+
+.submit_template{
+    background-color: #bb8ae42a;
+    font-size: 25px;
+    font-family: 'Krona One', sans-serif;
+    text-align: center;
+    border-radius: 15px;
+    border: 3px solid black;
+    z-index: 5;
+}

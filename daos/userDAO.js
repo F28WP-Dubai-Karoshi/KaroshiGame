@@ -53,8 +53,8 @@ function find(callback) {
 
 
 
-function findByEmail(email, callback) {
-    const selectUser = (SQL `SELECT * from players.users where email like ${email};`);
+function findByPseudoname(pseudoname, callback) {
+    const selectUser = (SQL `SELECT * from players.users where pseudoname like ${pseudoname};`);
     getResult(selectUser, function(err, rows) {
         if (!err) {
             callback(null, rows);
@@ -102,7 +102,7 @@ function deleteUser(id, callback) {
 
 module.exports = {
     find,
-    findByEmail,
+    findByPseudoname,
     findById,
     createUser,
     deleteUser

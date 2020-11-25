@@ -26,7 +26,7 @@ const createDb = function() {
         const sqlUser = "Create table if not exists `players`.`users`(" +
             "`id` int(11) NOT NULL auto_increment," +
             "`pseudoname` varchar(32) NOT NULL default 'Unkown'," +
-            "`email` varchar(32) NOT NULL," +
+            "`password` varchar(32) NOT NULL," +
             "PRIMARY KEY (`id`)" +
             "); ";
         connection.query(sqlUser, function(err, result) {
