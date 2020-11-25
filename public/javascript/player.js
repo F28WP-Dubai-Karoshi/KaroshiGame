@@ -10,15 +10,14 @@ var playgame = document.getElementById("play");
 
 playgame.onclick = function(){
   document.getElementById("play").style.visibility="hidden";
-  document.getElementById("transparent-overlay").style.visibility="hidden";
-  document.getElementById("username").style.visibility="hidden";
+  disappear();
   if(document.getElementById("username").value !==  ""){
-      username = document.getElementById("username").value;
+      userName = document.getElementById("username").value;
   }
   if(userName.length > 11){
     userName=userName.substring(0,11);
   }
-  socket.emit('username-submit', username);
+  socket.emit('username-submit', userName);
 }
 
 login.onclick = function() {
@@ -26,22 +25,36 @@ login.onclick = function() {
   username = document.getElementById("username").value;
   password = document.getElementById("password").value;
   socket.emit('login', {name: username, pwd: password});
+  disappear();
   document.getElementById("login").style.visibility="hidden";
-  document.getElementById("transparent-overlay").style.visibility="hidden";
-  document.getElementById("username").style.visibility="hidden";
   document.getElementById("password").style.visibility="hidden";
+  if(document.getElementById("userName").value !==  ""){
+    username = document.getElementById("userName").value;
+}
+if(username.length > 11){
+  username=username.substring(0,11);
+}
 }
 register.onclick = function() {
   console.log(`registering!`);
   username = document.getElementById("username").value;
   password = document.getElementById("password").value;
   socket.emit('register', {name: username, pwd: password});
+  disappear();
   document.getElementById("register").style.visibility="hidden";
-  document.getElementById("transparent-overlay").style.visibility="hidden";
-  document.getElementById("username").style.visibility="hidden";
   document.getElementById("password").style.visibility="hidden";
+  if(document.getElementById("username").value !==  ""){
+    username = document.getElementById("username").value;
+  }
+  if(username.length > 11){
+    username=username.substring(0,11);
+  }
 }
 
+function disappear(){
+  document.getElementById("transparent-overlay").style.visibility="hidden";
+  document.getElementById("username").style.visibility="hidden";
+}
 var Key = {LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40};
 function listener(evt, element, fn) {
     if (window.addEventListener) 
