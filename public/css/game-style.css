@@ -89,12 +89,15 @@ body{
                 2px 2px 0 #718a7f
 }
 
-h3{
+#title{
     color: whitesmoke;
     position: absolute;
-    right: 9%;
-    bottom:85%;
+    right: 20px;
     z-index: 2;
+    width: 400px;
+    padding: 0px;
+    bottom: 620px;
+    text-align: center;
 } 
 
 
