@@ -1,4 +1,4 @@
-#Virus.Io
+# Virus.Io
 
-##Debug Instructions:
+## Debug Instructions:
 Use "npm start" to run the program 
