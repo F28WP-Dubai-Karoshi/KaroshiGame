@@ -18,7 +18,7 @@ app.get("/",function(req,res){
 });
 
 app.get("/game",function(req,res){
-    res.sendFile('/game-page.html', {root: __dirname});
+    res.sendFile('game-page.html', {root: __dirname});
 });
 
 if (process.env.NODE_ENV === 'production') {
