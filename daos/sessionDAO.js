@@ -1,15 +1,15 @@
 const { Session } = require('../models/entities');
 const mysql = require('mysql');
 var con = mysql.createConnection({
-    host: "sql109.epizy.com",
-    user: "epiz_27308916",
-    password: "QQnQTjwo27juZl",
-    database: "epiz_27308916_XXX"
+    host: "fdb29.awardspace.net",
+    user: "3664440_virus",
+    password: "pogroot1",
+    database: "3664440_virus"
 });
 
 
 const find = function() {
-    const selectSessions = "SELECT * from epiz_27308916_XXX.sessions ;";
+    const selectSessions = "SELECT * from 3664440_virus.sessions ;";
     con.connect(function(err) {
         if (err) throw err;
         //select all sessions
@@ -22,7 +22,7 @@ const find = function() {
 };
 
 const findById = function(id) {
-    const selectSession = "SELECT * from epiz_27308916_XXX.sessions where id = ?";
+    const selectSession = "SELECT * from 3664440_virus.sessions where id = ?";
     con.connect(function(err) {
         if (err) throw err;
         //select session by id
@@ -35,7 +35,7 @@ const findById = function(id) {
 };
 
 const createSession = function() {
-    const insertSession = "INSERT INTO epiz_27308916_XXX.sessions VALUES();";
+    const insertSession = "INSERT INTO 3664440_virus.sessions VALUES();";
     con.connect(function(err) {
         if (err) throw err;
         //create session with default values ID, and startDate
@@ -48,7 +48,7 @@ const createSession = function() {
 };
 
 const deleteSession = function(id) {
-    const deleteSession = "DELETE FROM epiz_27308916_XXX.sessions WHERE id = ?";
+    const deleteSession = "DELETE FROM 3664440_virus.sessions WHERE id = ?";
     con.connect(function(err) {
         if (err) throw err;
         //delete session with ID

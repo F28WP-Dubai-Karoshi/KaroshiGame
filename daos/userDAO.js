@@ -5,10 +5,10 @@ const mysql = require('mysql');
 
 var pool = mysql.createPool({
     connectionLimit: 100,
-    host: "sql109.epizy.com",
-    user: "epiz_27308916",
-    password: "QQnOTjwo27juZl",
-    database: "epiz_27308916_XXX",
+    host: "fdb29.awardspace.net",
+    user: "3664440_virus",
+    password: "pogroot1",
+    database: "3664440_virus",
     debug: true
 });
 
@@ -42,7 +42,7 @@ function getResult(query, callback) {
 }
 
 function find(callback) {
-    const selectUsers = "SELECT * from epiz_27308916_XXX.users; ";
+    const selectUsers = "SELECT * from 3664440_virus.users; ";
     getResult(selectUsers, function(err, rows) {
         if (!err) {
             callback(null, rows);
@@ -55,7 +55,7 @@ function find(callback) {
 
 
 function findByPseudoname(pseudoname, callback) {
-    const selectUser = (SQL `SELECT * from epiz_27308916_XXX.users where pseudoname like ${pseudoname};`);
+    const selectUser = (SQL `SELECT * from 3664440_virus.users where pseudoname like ${pseudoname};`);
     getResult(selectUser, function(err, rows) {
         if (!err) {
             callback(null, rows);
@@ -66,7 +66,7 @@ function findByPseudoname(pseudoname, callback) {
 }
 
 function findById(id, callback) {
-    const selectUser = (SQL `SELECT * from epiz_27308916_XXX.users where id = ${id};`);
+    const selectUser = (SQL `SELECT * from 3664440_virus.users where id = ${id};`);
     getResult(selectUser, function(err, rows) {
         if (!err) {
             callback(null, rows);
@@ -77,7 +77,7 @@ function findById(id, callback) {
 }
 
 function createUser(pseudoname, email, callback) {
-    const insertUser = (SQL `INSERT INTO epiz_27308916_XXX.users (pseudoname, email) VALUES (${pseudoname}, ${email}) ;`);
+    const insertUser = (SQL `INSERT INTO 3664440_virus.users (pseudoname, email) VALUES (${pseudoname}, ${email}) ;`);
     getResult(insertUser, function(err, result) {
         if (!err) {
             callback(null, result.affectedRows, result.insertId);
@@ -89,7 +89,7 @@ function createUser(pseudoname, email, callback) {
 
 
 function deleteUser(id, callback) {
-    const selectUser = (SQL `DELETE from epiz_27308916_XXX.users where id = ${id};`);
+    const selectUser = (SQL `DELETE from 3664440_virus.users where id = ${id};`);
     getResult(selectUser, function(err, result) {
         if (!err) {
             console.log("Number of users inserted: " + result.affectedRows);
