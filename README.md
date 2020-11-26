@@ -25,7 +25,7 @@
 ## Index Page
 ![](mockup/updatedIndex.png)
 ## Game Page
-![](mockup/gamePage-2.png)
+![](mockup/game-page-final.png)
 
 ---
 
