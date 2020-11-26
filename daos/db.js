@@ -3,7 +3,7 @@ const createDb = function() {
     const connection = mysql.createConnection({
         host: "sql109.epizy.com",
         user: "epiz_27308916",
-        password: "QQnQTjwo27juZl"
+        password: "QQnOTjwo27juZl"
     });
 
     connection.connect(function(err) {

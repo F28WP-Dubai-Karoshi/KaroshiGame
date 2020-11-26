@@ -12,10 +12,21 @@ serv.listen(PORT, function(){
     console.log("listening at 3000");
 });
 
-app.use(express.static('public'));
+app.use(express.static(__dirname+"/public"));
 app.get("/",function(req,res){
     res.sendFile('index.html', {root: __dirname});
 });
+
+if (process.env.NODE_ENV === 'production') {
+    // Exprees will serve up production assets
+    app.use(express.static('client/build'));
+  
+    // Express serve up index.html file if it doesn't recognize route
+    const path = require('path');
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -23,11 +34,17 @@ app.use(express.urlencoded());
 const chatRouter = require('./routes/post');
 app.use(chatRouter);
 
-const createDB = require('./daos/db');
-const { loginService } = require("./services/userServices");
-createDB();
+// const createDB = require('./daos/db');
+// const { loginService } = require("./services/userServices");
+// createDB();
 
 //player constructor
+// const createDB = require('./daos/db');
+// createDB();
+
+//loading socket.io and binding to server
+const io = require('socket.io')(serv);
+
 var Player = function(name,id){
     self = {
     name: name,
@@ -41,8 +58,6 @@ var Player = function(name,id){
 SOCKET_LIST = {};
 //list of scores&players
 SCORES_LIST = {};
-//loading socket.io and binding to server
-const io = require('socket.io')(serv);
 
 io.sockets.on('connection', function(socket) {
     console.log(socket.id + 'has joined the game.');
@@ -96,9 +111,6 @@ io.sockets.on('connection', function(socket) {
         delete SOCKET_LIST[socket.id];
         io.emit('participant', '<i>' + player.name + ' left the game...</i>');
     });
-
-
-
 });
 
 //emit score every 40 milliseconds
