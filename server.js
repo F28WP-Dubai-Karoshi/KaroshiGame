@@ -17,6 +17,10 @@ app.get("/",function(req,res){
     res.sendFile('index.html', {root: __dirname});
 });
 
+app.get("/game",function(req,res){
+    res.sendFile('/game-page.html', {root: __dirname});
+});
+
 if (process.env.NODE_ENV === 'production') {
     // Exprees will serve up production assets
     app.use(express.static('client/build'));
