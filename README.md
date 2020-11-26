@@ -10,6 +10,11 @@
 **Play as a virus and work your way up the leaderboard by eating pellets and avoiding the masks and sanitizers. Chat with other people as you play!**
 </br>
 </br>
+**Game Link**: https://virusio.herokuapp.com/
+</br>
+**Trailer**: https://www.youtube.com/watch?v=ZpRNb-vAu_E&feature=youtu.be
+</br>
+</br>
 |**Game Instructions**                                                                       |
 |--------------------------------------------------------------------------------------------|
 |**1)** Eat pellets to gain points (+3pts) and work your way up the leaderboard.             |
