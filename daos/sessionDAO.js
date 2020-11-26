@@ -3,7 +3,7 @@ const mysql = require('mysql');
 var con = mysql.createConnection({
     host: "sql109.epizy.com",
     user: "epiz_27308916",
-    password: "QQnOTjwo27juZl",
+    password: "QQnQTjwo27juZl",
     database: "epiz_27308916_XXX"
 });
 
