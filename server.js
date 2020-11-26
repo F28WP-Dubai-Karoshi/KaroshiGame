@@ -9,7 +9,7 @@ app.use(morgan('dev'));
 
 const PORT = process.env.PORT || 3000;
 serv.listen(PORT, function(){
-    console.log("listening at 3000");
+    console.log("listening at "+PORT);
 });
 
 app.use(express.static(__dirname+"/public"));
